@@ -9,7 +9,11 @@ def partition(a, p, r):
     return i + 1
 
 
-def quicksort(a, p, r):
+def quicksort(a, p = None, r = None):
+    if p is None:
+        p = 0
+    if r is None:
+        r = len(a) - 1
     if p < r:
         q = partition(a, p, r)
         quicksort(a, p, q - 1)
