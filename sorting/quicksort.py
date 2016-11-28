@@ -9,7 +9,7 @@ def partition(a, p, r):
     return i + 1
 
 
-def quicksort(a, p = None, r = None):
+def quicksort(a, p=None, r=None):
     if p is None:
         p = 0
     if r is None:
@@ -20,4 +20,3 @@ def quicksort(a, p = None, r = None):
         quicksort(a, q + 1, r)
 
     return a
-
