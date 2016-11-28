@@ -9,12 +9,12 @@ import sys
 
 class TestSort(unittest.TestCase):
     def sort(self, a):
-        return None
+        return
 
     def test_random(self):
         old_callstack = sys.getrecursionlimit()
         sys.setrecursionlimit(10000)
-        self.do_test([int(100*random.random()) for _ in range(100)])
+        self.do_test([int(100*random.random()) for _ in range(1000)])
         sys.setrecursionlimit(old_callstack)
 
     def test_duplicates(self):
@@ -33,10 +33,10 @@ class TestSort(unittest.TestCase):
         self.do_test([6, 4, 3, 2, 1])
 
     def do_test(self, array):
-        sorted_  = self.sort(array)
+        sorted_ = self.sort(array)
         if not sorted_:
             return
-        self.assertEqual(self.sort(array), sorted(array))
+        self.assertEqual(sorted_, sorted(array))
 
 
 class TestQSort(TestSort):
