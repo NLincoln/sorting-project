@@ -5,6 +5,33 @@ from sorting.InsertionSort import insertion_sort
 from sorting.MergeSort import merge_sort
 import random
 import sys
+import time
+
+
+class Timer(object):
+    def __init__(self, verbose=False):
+        self.verbose = verbose
+
+    def __enter__(self):
+        self.start = time.time()
+        return self
+
+    def __exit__(self, *args):
+        self.end = time.time()
+        self.secs = self.end - self.start
+        self.msecs = self.secs * 1000
+        if self.verbose:
+            print(u'elapsed time: {0:f} ms'.format(self.msecs))
+
+
+def perf_test():
+    a = [int(100*random.random()) for _ in range(10000)]
+    with Timer(verbose=False) as t:
+        quicksort(a)
+    return t.msecs
+
+times = [perf_test() for _ in range(100)]
+print(sum(times) / len(times))
 
 
 class TestSort(unittest.TestCase):
@@ -58,4 +85,4 @@ class TestMSort(TestSort):
     def sort(self, a):
         return merge_sort(a)
 
-unittest.main()
+# unittest.main()
