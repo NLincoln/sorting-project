@@ -43,8 +43,6 @@ class TrialSet:
         self.average_time = sum([i.time for i in self.trials])
 
 
-
-
 class Timer(object):
     def __init__(self, verbose=False):
         self.verbose = verbose
