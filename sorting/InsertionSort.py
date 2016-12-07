@@ -5,4 +5,3 @@ def insertion_sort(a):
             a[j - 1], a[j] = a[j], a[j - 1]
             j -= 1
     return a
-
