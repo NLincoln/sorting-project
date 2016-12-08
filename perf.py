@@ -42,11 +42,14 @@ generators = [
     generate_reversed_list
 ]
 
+max_limit = 10000
+step = 10
+
 with CallStackIncreaser(size=10 ** 9):
     generator_perfs = []
     for gen in generators:
         for func in sorting_functions:
-            for limit in range(0, 1000, 10):
+            for limit in range(0, max_limit, step):
                 trial = TrialSet()
                 trial.create_trial(func, gen, limit)
                 print('{gen},{algo},{time},{limit}'.format(gen=gen.__name__,
