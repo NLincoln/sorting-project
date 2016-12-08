@@ -13,12 +13,15 @@ elif cmd_generator == 'random_no_unique':
     gen = random_no_unique
 elif cmd_generator == 'reversed_list':
     gen = reversed_list
-else:
+elif cmd_generator == 'random_few_unique':
     gen = random_few_unique
+else:
+    raise ValueError('ayyy plz stahp')
 
-max_limit = 1000
+max_limit = 10000
 step = 10
 
+print(gen.__name__)
 
 def do_trial(func):
     trials = []
@@ -38,6 +41,8 @@ for trial, func_name in gen_trials:
     x, y = zip(*trial)
     plt.plot(x, y, label=func_name)
     plt.xlim(xmax=x[-1])
+plt.xlabel('List Length')
+plt.ylabel('Running time (ms)')
 plt.xlim(xmin=0)
 plt.ylim(ymin=0)
 plt.legend(loc='upper left')
