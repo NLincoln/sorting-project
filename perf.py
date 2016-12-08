@@ -1,7 +1,7 @@
 import math
 from random import shuffle, random
 from typing import List
-from perf_framework import CallStackIncreaser, GrowingSetPerf
+from perf_framework import CallStackIncreaser, TrialSet
 from sorting.quicksort import quicksort
 from sorting.BubbleSort import bubble_sort
 from sorting.InsertionSort import insertion_sort
@@ -46,9 +46,9 @@ with CallStackIncreaser(size=10 ** 9):
     generator_perfs = []
     for gen in generators:
         for func in sorting_functions:
-            trials = GrowingSetPerf()
-            trials.growing_size(func, gen)
-            for trial in trials.trials:
+            for limit in range(0, 1000, 10):
+                trial = TrialSet()
+                trial.create_trial(func, gen, limit)
                 print('{gen},{algo},{time},{limit}'.format(gen=gen.__name__,
                                                            algo=func.__name__,
                                                            time=trial.average_time,
