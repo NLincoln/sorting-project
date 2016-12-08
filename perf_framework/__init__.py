@@ -1,4 +1,3 @@
-from typing import Callable, List, Any
 import time
 import sys
 
@@ -7,12 +6,12 @@ class Trial:
     time = None
 
     @staticmethod
-    def time_function(func: Callable[[List], Any], a: List):
+    def time_function(func, a):
         with Timer(verbose=False) as t:
             func(a)
         return t.msecs
 
-    def do_trial(self, function: Callable[[List], Any], generator: Callable[[int], List], limit: int):
+    def do_trial(self, function, generator, limit):
         self.time = self.time_function(function, generator(limit))
 
 
@@ -23,10 +22,10 @@ class TrialSet:
     def __init__(self):
         self.trials = []
 
-    def create_trial(self, func: Callable[[List], Any], generator: Callable[[int], List], limit: int):
+    def create_trial(self, func, generator, limit):
         self.limit = limit
 
-        num_trials = 10
+        num_trials = 3
         self.trials = [Trial() for _ in range(num_trials)]
         for trial in self.trials:
             trial.do_trial(func, generator, limit)
