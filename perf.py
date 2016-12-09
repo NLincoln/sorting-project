@@ -23,6 +23,7 @@ step = 10
 
 print(gen.__name__)
 
+
 def do_trial(func):
     trials = []
     for limit in range(0, max_limit, step):
